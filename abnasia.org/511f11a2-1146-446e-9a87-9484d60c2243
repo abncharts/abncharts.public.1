@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+
+    <title>Contract Mitigation Tutorial</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="https://blog.thirdweb.com/assets/built/screen.css?v=7766f453c2" />
+    <link rel="stylesheet" type="text/css" href="https://blog.thirdweb.com/assets/built/custom.css?v=7766f453c2" />
+    <link rel="stylesheet" type="text/css" href="https://blog.thirdweb.com/assets/built/cta.css?v=7766f453c2" />
+    <link rel="stylesheet" type="text/css" href="https://blog.thirdweb.com/assets/built/footer.css?v=7766f453c2" />    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="icon" href="https://blog.thirdweb.com/content/images/size/w256h256/2022/08/tw-logo-newsletter-31.png" type="image/png">
+    <link rel="canonical" href="https://blog.thirdweb.com/security/contract-mitigation/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="thirdweb">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Contract Mitigation Tutorial">
+    <meta property="og:description" content="Overview
+
+Using the thirdweb mitigation tool, you’ll be able to mitigate the vulnerability that we’ve discovered in the recent security incident (”this vulnerability”) in the contracts you’ve deployed.
+
+Using the tool at mitigate.thirdweb.com, you’ll be able to identify which of your contracts have this">
+    <meta property="og:url" content="https://blog.thirdweb.com/security/contract-mitigation/">
+    <meta property="og:image" content="https://blog.thirdweb.com/content/images/size/w1200/2022/08/NEW-TW-header-06.png">
+    <meta property="article:published_time" content="2023-12-04T22:46:39.000Z">
+    <meta property="article:modified_time" content="2023-12-05T00:52:24.000Z">
+    <meta property="article:tag" content="Security Vulnerability">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contract Mitigation Tutorial">
+    <meta name="twitter:description" content="Overview
+
+Using the thirdweb mitigation tool, you’ll be able to mitigate the vulnerability that we’ve discovered in the recent security incident (”this vulnerability”) in the contracts you’ve deployed.
+
+Using the tool at mitigate.thirdweb.com, you’ll be able to identify which of your contracts have this">
+    <meta name="twitter:url" content="https://blog.thirdweb.com/security/contract-mitigation/">
+    <meta name="twitter:image" content="https://blog.thirdweb.com/content/images/size/w1200/2022/08/NEW-TW-header-06.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Eiman Abdelmoneim">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Security Vulnerability">
+    <meta name="twitter:site" content="@thirdweb">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="400">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "thirdweb",
+        "url": "https://blog.thirdweb.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://blog.thirdweb.com/content/images/2022/08/Thirdweb-Logo-Transparent-White.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Eiman Abdelmoneim",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.thirdweb.com/content/images/2024/01/headshot.jpeg",
+            "width": 778,
+            "height": 1009
+        },
+        "url": "https://blog.thirdweb.com/author/eiman/",
+        "sameAs": []
+    },
+    "headline": "Contract Mitigation Tutorial",
+    "url": "https://blog.thirdweb.com/security/contract-mitigation/",
+    "datePublished": "2023-12-04T22:46:39.000Z",
+    "dateModified": "2023-12-05T00:52:24.000Z",
+    "keywords": "Security Vulnerability",
+    "description": "Overview\n\nUsing the thirdweb mitigation tool, you’ll be able to mitigate the vulnerability that we’ve discovered in the recent security incident (”this vulnerability”) in the contracts you’ve deployed.\n\nUsing the tool at mitigate.thirdweb.com, you’ll be able to identify which of your contracts have this vulnerability, and receive mitigation steps. We recommend you take mitigation steps immediately. By taking these steps, you will be incurring the gas costs associated with the mitigation. In cert",
+    "mainEntityOfPage": "https://blog.thirdweb.com/security/contract-mitigation/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.81">
+    <link rel="alternate" type="application/rss+xml" title="thirdweb" href="https://blog.thirdweb.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="16e04b461a218cd2e4d0092daa" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://thirdweb.ghost.io/" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.thirdweb.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=7766f453c2"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=7766f453c2">
+    <link href="https://unpkg.com/prismjs@v1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+<style>
+    .gh-content .kg-card+:not(.kg-card), .gh-content :not(.kg-card):not([id])+.kg-card {
+        margin-top: 3vmin !important;
+    }
+    
+    .gh-content .kg-card+:not(.kg-card), .gh-content :not(.kg-card):not([id])+.kg-card img {
+        border-radius: 8px !important;
+    }
+    
+    .gh-content code {
+	    background: transparent!important;
+    }
+</style><style>:root {--ghost-accent-color: #7e00e6;}</style>
+
+</head>
+<body class="post-template tag-security-vulnerability tag-hash-security has-sans-body">
+<div class="viewport">
+
+    <header id="gh-head" class="gh-head outer">
+        <nav class="gh-head-inner inner">
+
+            <div class="gh-head-brand">
+                <a class="gh-head-logo" href="https://blog.thirdweb.com">
+                        <img src="https://blog.thirdweb.com/content/images/2022/08/Thirdweb-Logo-Transparent-White.png" alt="thirdweb" />
+                </a>
+                <div class="gh-head-brand-wrapper">
+                    <button class="gh-search" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                    <a class="gh-burger" role="button">
+                        <div class="gh-burger-box">
+                            <div class="gh-burger-inner"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-homepage"><a href="https://thirdweb.com">Homepage ↗</a></li>
+    <li class="nav-guides"><a href="https://blog.thirdweb.com/guides/">Guides</a></li>
+    <li class="nav-case-studies"><a href="https://blog.thirdweb.com/case-studies/">Case Studies</a></li>
+    <li class="nav-changelog"><a href="https://blog.thirdweb.com/changelog/">Changelog</a></li>
+    <li class="nav-docs"><a href="https://portal.thirdweb.com">Docs ↗</a></li>
+    <li class="nav-youtube"><a href="https://www.youtube.com/thirdweb">YouTube ↗</a></li>
+</ul>
+
+            </div>
+            <div class="gh-head-actions">
+                <button class="gh-search" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <div class="gh-social">
+                        <a class="gh-social-link gh-social-twitter" href="https://twitter.com/thirdweb" title="Twitter" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="site-content">
+        
+
+
+
+<main id="site-main" class="site-main">
+<article class="article post tag-security-vulnerability tag-hash-security no-image image-small">
+
+    <header class="article-header gh-canvas">
+
+        <div class="article-tag post-card-tags">
+                <span class="post-card-primary-tag">
+                    <a href="/tag/security-vulnerability/">Security Vulnerability</a>
+                </span>
+        </div>
+
+        <h1 class="article-title">Contract Mitigation Tutorial</h1>
+
+
+        <div class="article-byline">
+        <section class="article-byline-content">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+                    <a href="/author/eiman/" class="author-avatar">
+                        <img class="author-profile-image" src="/content/images/size/w100/2024/01/headshot.jpeg" alt="Eiman Abdelmoneim" />
+                    </a>
+                </li>
+            </ul>
+
+            <div class="article-byline-meta">
+                <h4 class="author-name"><a href="/author/eiman/">Eiman Abdelmoneim</a></h4>
+                <div class="byline-meta-content">
+                    <time class="byline-meta-date" datetime="2023-12-04">Dec 4, 2023</time>
+                        <span class="byline-reading-time"><span class="bull">&bull;</span> 3 min read</span>
+                </div>
+            </div>
+
+        </section>
+        </div>
+
+
+    </header>
+
+    <section class="gh-content gh-canvas">
+        <h2 id="overview"><strong>Overview</strong></h2><p>Using the thirdweb mitigation tool, you’ll be able to mitigate the vulnerability that we’ve discovered in the recent security incident (”this vulnerability”) in the contracts you’ve deployed.</p><p>Using the tool at <a href="http://mitigate.thirdweb.com/?ref=blog.thirdweb.com"><strong><u>mitigate.thirdweb.com</u></strong></a>, you’ll be able to identify which of your contracts have this vulnerability, and receive mitigation steps. We recommend you take mitigation steps immediately. By taking these steps, you will be incurring the gas costs associated with the mitigation. In certain cases, your token holders may incur gas costs as well.</p><p>In general there are three types of mitigation pathways:</p><ol><li>Upgrade path: You will patch your existing contract for this vulnerability.</li><li>Lock &amp; recreate path: You will first lock your existing contract from actions. Then, depending on the contract type, you may need to take extra steps like snapshotting the contract, and distributing new tokens to your existing token holders.</li><li>Unapprove: For certain contracts, the mitigation path will be removing token approval from the contract.</li></ol><h2 id="getting-started"><strong>Getting Started</strong></h2><p>🎬&nbsp;<a href="https://youtu.be/kYy6uDmIQQA?ref=blog.thirdweb.com"><a href="https://youtu.be/kYy6uDmIQQA?si=KbhfbEDbiiNtQR8t&ref=blog.thirdweb.com"><strong><em>Video Walkthrough</em></strong></a></a></p><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">⚠️</div><div class="kg-callout-text">Only the contract owner will be able to see the contracts listed in the mitigation tool.</div></div><ol><li>Visit the <a href="https://mitigate.thirdweb.com/?ref=blog.thirdweb.com">mitigation site</a></li><li>Connect your wallet</li></ol><h2 id="upgrade-path"><strong>Upgrade Path</strong></h2><h3 id="impacted-contract-list"><strong>Impacted Contract list</strong></h3><p><em>Depending on the version of your contract, you may not be impacted. You can rely on the mitigation tool to guide you.</em></p><ul><li>TieredDrop</li><li>BurnToClaimDropERC721</li><li>Marketplace V3</li></ul><h3 id="sample-process"><strong>Sample Process</strong></h3><p>🎬 <a href="https://youtu.be/kYy6uDmIQQA?feature=shared&t=41&ref=blog.thirdweb.com"><em><u>Video Walkthrough</u></em></a></p><p>The following is the mitigation process for a single contract type, <strong>Marketplace V3</strong>, from this category. Individual steps will vary between contracts, but you can rely on the mitigation tool to guide you.</p><p>To mitigate the vulnerability, you will:</p><ol><li>Upgrade this contract to patch this vulnerability.</li></ol><h2 id="lock-create-path"><strong>Lock &amp; Create Path</strong></h2><h3 id="impacted-contract-list-1"><strong>Impacted Contract list</strong></h3><p><em>Depending on the version of your contract, you may not be impacted. You can rely on the mitigation tool to guide you.</em></p><ul><li>TokenERC20</li><li>TokenERC721</li><li>TokenERC1155</li><li>DropERC20</li><li>DropERC721</li><li>DropERC1155</li><li>AirdropERC20</li><li>AirdropERC721</li><li>OpenEdition</li><li>LoyaltyCard</li><li>SignatureDrop</li><li>Pack</li><li>Multiwrap</li><li>Marketplace (royalty engine)</li><li>Marketplace (no royalty engine)</li><li>Split (no funds at risk)</li><li>TokenStake</li><li>NFTStake</li><li>EditionStake</li></ul><h3 id="sample-process-1"><strong>Sample Process</strong></h3><p>🎬&nbsp;<a href="https://youtu.be/kYy6uDmIQQA?feature=shared&t=70&ref=blog.thirdweb.com"><strong><em>Video Walkthrough</em></strong></a></p><p>The following is the mitigation process for a single contract type, <strong>DropERC721</strong>, from this category. Individual steps will vary between contracts, but you can rely on the mitigation tool to guide you.</p><p>To mitigate the vulnerability, you will:</p><p>1. Lock Contract</p><ol><ol><li>Metadata will be frozen.</li><li><code>[Locked]</code> will be appended to the collection name.</li><li>All permissions will be revoked, including admin ones.</li></ol></ol><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">⚠️</div><div class="kg-callout-text"><b><strong style="white-space: pre-wrap;">Locking your contract cannot be undone</strong></b> If your users have tokens staked in an escrow contract (i.e. liquidity or staking pool), by locking this contract, these users will not be able to withdraw their tokens because any token transfers will be disabled. We suggest you ask your users to withdraw their tokens from any escrow contracts before you lock this contract.</div></div><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">⚠️</div><div class="kg-callout-text"><b><strong style="white-space: pre-wrap;">Prioritize locking your contract</strong></b><br><br>Once your contract is locked, the vulnerability is mitigated. You may choose to Lock all of your vulnerable contracts first before completing all the mitigation steps for each contract.<br><br>After you begin to lock the contract, if you do not see "lock complete" after waiting, please do not refresh the page. Instead email support@thirdweb.com with the url of the mitigation page.</div></div><p>2. Snapshot Contract Data</p><ol><ol><li>This step will snapshot the metadata (name, symbol, description) and state (default primary sale recipient, default platform fee information, royalty information, token ID, token holders, balances, max total supply) of your existing contract so that it can be used to migrate to the new contract.</li><li>Any unclaimed lazy-minted tokens will not be snapshotted and migrated.</li><li>Note — You have the option to upload your own snapshot to be configured in the new contract deployment.</li></ol></ol><p>3. Deploy&nbsp;New&nbsp;Contract</p><p>This step will deploy a new DropERC721M contract without this vulnerability. After deployment, you will need to re-configure the claim conditions.</p><p>4. Distribute new tokens via airdrop or claim:</p><p>Option 1 [Claim]: Your existing token holders can use this link to claim their tokens from this contract. They will be responsible for the gas.</p><p>Option 2 [Airdrop]: Use this to airdrop the recovered tokens for your token holders. You will cover gas for your holders.</p><div class="kg-card kg-callout-card kg-callout-card-blue"><div class="kg-callout-emoji">⛽</div><div class="kg-callout-text">We will be offering a retroactive gas grant to cover fees for contract mitigations. Receiving a gas grant will depend on a number of factors. Please fill in <a href="https://form.typeform.com/to/UOAk0W4C?ref=blog.thirdweb.com" rel="noopener noreferrer">this form</a> to be considered.</div></div><h2 id="unapprove-path"><strong>Unapprove Path</strong></h2><h3 id="impacted-contract-list-2"><strong>Impacted Contract list</strong></h3><p><em>Depending on the version of your contract, you may not be impacted. You can rely on the mitigation tool to guide you.</em></p><ul><li>AirdropERC20Claimable</li><li>AirdropERC721Claimable</li><li>AirdropERC1155Claimable</li></ul><h3 id="sample-process-2">Sample Process</h3><p>🎬&nbsp;<a href="https://youtu.be/kYy6uDmIQQA?feature=shared&t=262&ref=blog.thirdweb.com"><strong><em>Video Walkthrough</em></strong></a></p><p>The following is the mitigation process for a single contract type, <strong>AirdropERC20Claimable</strong>, from this category. Individual steps will vary between contracts, but you can rely on the mitigation tool to guide you.</p><p>To mitigate the vulnerability:</p><ol><li>The token owner will need to remove their token approval from this airdrop contract.<ol><li>If (admin is not token owner): You will need to ask the token owner to go to<a href="https://revoke.cash/address/jakeloo.eth?chainId=1&ref=blog.thirdweb.com"> <u>revoke.cash</u></a> and remove their approval from this contract.</li><li>If (admin is token owner): You will remove your approval from this contract.</li></ol></li><li>If you would like to deploy a new AirdropERC20Claimable contract, you can do so <a href="https://thirdweb.com/thirdweb.eth/AirdropERC20Claimable?ref=blog.thirdweb.com"><u>in the dashboard</u></a>.</li></ol>
+    </section>
+
+
+</article>
+</main>
+
+
+
+
+            <aside class="read-more-wrap outer">
+                <div class="read-more inner">
+                        
+<article class="post-card post no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/changelog/airdrop/">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    Airdrop smart contract now available on dashboard
+                </h2>
+            </header>
+                <div class="post-card-excerpt">thirdweb&#39;s new Airdrop contract is available for deployment.
+
+The contract is suitable to use when you want to transfer ERC20 / ERC721 / ERC1155 tokens to a list of recipient addresses, and supports push based, claim based (allowlist), and signature based airdrops.
+
+This contract is an upgrade to the current</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2024-04-06">Apr 6, 2024</time>
+        </footer>
+
+    </div>
+
+</article>
+                        
+<article class="post-card post no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/changelog/important-reminder-upcoming-deprecation-of-mumbai-testnet/">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    Important Reminder: Upcoming Deprecation of Mumbai Testnet
+                </h2>
+            </header>
+                <div class="post-card-excerpt">This changelog serves as a reminder that, as previously announced, Polygon’s Mumbai testnet will be deprecated effective April 8, 2024. This change will affect thirdweb’s product and services including SDK, Paymaster, Embedded Wallet, contracts, and any other products utilizing the Mumbai testnet.
+
+
+What This Means for You:
+
+ * Unable</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2024-04-05">Apr 5, 2024</time>
+                <span class="post-card-meta-length">1 min read</span>
+        </footer>
+
+    </div>
+
+</article>
+                        
+<article class="post-card post no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/changelog/unity-4-10-phone-login-more/">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    Unity 4.10 - Phone Login &amp; More
+                </h2>
+            </header>
+                <div class="post-card-excerpt">Sign in with your phone number, unified transactions and added utilities.</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2024-04-05">Apr 5, 2024</time>
+                <span class="post-card-meta-length">1 min read</span>
+        </footer>
+
+    </div>
+
+</article>
+                </div>
+            </aside>
+
+
+
+    </div>
+
+    <div class="tw-footer-cta">
+  <p class="tw-footer-cta-title">
+    <span class="gradient-text">Build web3 apps</span>
+    easily
+  </p>
+  <p class="tw-footer-cta-description">Deploy smart contracts and build dApps on
+    700+ blockchains, in minutes.</p>
+  <div class="cta-actions">
+    <a class="link-button link-button-primary" href="https://thirdweb.com">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" focusable="false"
+        aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z">
+        </path>
+      </svg>
+      <span style="margin-left: 0.8rem">Start building</span>
+    </a>
+    <a class="link-button link-button-secondary" href="https://thirdweb.com/contact-us">
+      Contact us
+    </a>
+  </div>
+</div>    
+    <footer class="tw-footer">
+        <div class="tw-footer-content">
+            <section class="copyright">
+            <a href="https://blog.thirdweb.com">thirdweb</a>
+            &copy;
+            2024
+            </section>
+
+            <nav class="tw-footer-nav">
+            
+            </nav>
+
+            <iframe
+            src="https://embeds.beehiiv.com/0789aa79-e18d-4c07-a896-e122fc804dda?slim=true"
+            data-test-id="beehiiv-embed"
+            frameborder="0"
+            scrolling="no"
+            style="margin: 0; border-radius: 0px !important; background-color: transparent; height:52px;max-width:400px;width:100%;"
+            ></iframe>
+        </div>
+    </footer>
+</div>
+
+
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+</script>
+<script src="https://blog.thirdweb.com/assets/built/casper.js?v=7766f453c2"></script>
+<script>
+$(document).ready(function () {
+    // Mobile Menu Trigger
+    $('.gh-burger').click(function () {
+        $('body').toggleClass('gh-head-open');
+    });
+    // FitVids - Makes video embeds responsive
+    $(".gh-content").fitVids();
+});
+</script>
+
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_hKK4bo8cHZrKuAVXfXGpfNSLSJuucUnguAgt2j6dgSV',{api_host:'https://a.thirdweb.com'})
+</script>
+<script defer data-domain="blog.thirdweb.com" data-api="https://pl.thirdweb.com/api/event" src="https://thirdweb.com/js/pl.js"></script>
+
+<script defer src="https://unpkg.com/prismjs@v1.29.0/components/prism-core.min.js"></script>
+<script defer src="https://unpkg.com/prismjs@v1.29.0/components/prism-clike.min.js"></script>
+<script defer src="https://unpkg.com/prismjs@v1.29.0/components/prism-csharp.min.js"></script>
+<script defer src="https://unpkg.com/prismjs@v1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+</body>
+</html>
